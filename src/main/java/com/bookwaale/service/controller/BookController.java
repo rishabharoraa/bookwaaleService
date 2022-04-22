@@ -20,6 +20,11 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+    @GetMapping("/{bookId}")
+    public Book getBook(@PathVariable Long bookId) throws Exception {
+        return bookService.getBook(bookId);
+    }
+
     @PostMapping
     public void createBook(
             @RequestBody @Valid BookRequestDTO bookRequestDTO

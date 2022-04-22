@@ -1,6 +1,7 @@
 package com.bookwaale.service.model;
 
 import com.bookwaale.service.enums.Language;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 

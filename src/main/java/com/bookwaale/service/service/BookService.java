@@ -30,11 +30,13 @@ public class BookService {
 
     public void createBook(BookRequestDTO bookRequestDTO) throws Exception {
 
-        Set<Language> languagesEnumSet = bookRequestDTO.getLanguages().stream().map(
-                lang -> {
-                    return Language.valueOf(lang.toUpperCase());
-                }
-        ).collect(Collectors.toSet());
+        Set<Language> languagesEnumSet = bookRequestDTO
+                .getLanguages()
+                .stream().map(
+                        lang -> {
+                            return Language.valueOf(lang.toUpperCase());
+                        }
+                ).collect(Collectors.toSet());
 
         if (bookRequestDTO.getPublicationDate() == null) {
             bookRequestDTO.setPublicationDate(new Date());
@@ -70,5 +72,13 @@ public class BookService {
         }
 
         bookRepository.save(book);
+    }
+
+    public Book getBook(Long bookId) throws Exception {
+        return bookRepository
+                .findById(bookId)
+                .orElseThrow(
+                        () -> new Exception("Book not found")
+                );
     }
 }

@@ -25,6 +25,9 @@ public class BookConfig {
             Author ken = new Author("Ken Follett", "");
             authorService.createAuthor(ken);
 
+            Author kafka = new Author("Franz Kafka", "");
+            authorService.createAuthor(kafka);
+
             Book pillarsOfTheEarth = new Book(
                     "Pillars of the Earth",
                     authorService.getAuthor(1L),
@@ -42,6 +45,15 @@ public class BookConfig {
                     Set.of(Language.ENGLISH)
             );
             bookService.createBook(worldWithoutEnd);
+
+            Book sw = new Book(
+                    "Selected Works",
+                    authorService.getAuthor(2L),
+                    250L,
+                    new Date(),
+                    Set.of(Language.ENGLISH)
+            );
+            bookService.createBook(sw);
         };
     }
 }
