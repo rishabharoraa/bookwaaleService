@@ -1,5 +1,6 @@
 package com.bookwaale.service.controller;
 
+import com.bookwaale.service.dto.request.AuthorRequestDTO;
 import com.bookwaale.service.dto.response.AuthorResponseDTO;
 import com.bookwaale.service.service.AuthorService;
 import com.bookwaale.service.model.Author;
@@ -23,5 +24,10 @@ public class AuthorController {
     @GetMapping("/{authorId}")
     public AuthorResponseDTO getAuthorResponseDTO(@PathVariable Long authorId) throws Exception {
         return authorService.getAuthorResponseDTO(authorId);
+    }
+
+    @PostMapping
+    public AuthorResponseDTO createAuthor(AuthorRequestDTO authorRequestDTO) {
+        return authorService.createAuthor(authorRequestDTO);
     }
 }

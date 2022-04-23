@@ -1,8 +1,8 @@
 package com.bookwaale.service.controller;
 
 import com.bookwaale.service.dto.request.BookRequestDTO;
-import com.bookwaale.service.service.BookService;
 import com.bookwaale.service.model.Book;
+import com.bookwaale.service.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,20 @@ public class BookController {
     @PostMapping
     public void createBook(
             @RequestBody @Valid BookRequestDTO bookRequestDTO
-            ) throws Exception {
+    ) throws Exception {
         bookService.createBook(bookRequestDTO);
+    }
+
+    @DeleteMapping("/{bookId}")
+    public void deleteBook(@PathVariable Long bookId) throws Exception {
+        bookService.deleteBook(bookId);
+    }
+
+    @PutMapping("/{bookId}")
+    public void updateBook(
+            @PathVariable Long bookId,
+            @RequestBody @Valid BookRequestDTO bookRequestDTO
+    ) throws Exception {
+        bookService.updateBook(bookId, bookRequestDTO);
     }
 }

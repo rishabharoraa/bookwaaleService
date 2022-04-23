@@ -1,10 +1,12 @@
 package com.bookwaale.service.config;
 
+import com.bookwaale.service.dto.request.AuthorRequestDTO;
 import com.bookwaale.service.enums.Language;
 import com.bookwaale.service.model.Author;
 import com.bookwaale.service.service.AuthorService;
 import com.bookwaale.service.model.Book;
 import com.bookwaale.service.service.BookService;
+import com.bookwaale.service.util.converter.AuthorEntityConverter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +20,15 @@ public class BookConfig {
     @Bean
     CommandLineRunner commandLineRunner(
             AuthorService authorService,
-            BookService bookService
+            BookService bookService,
+            AuthorEntityConverter authorEntityConverter
     ) {
         return args -> {
 
-            Author ken = new Author("Ken Follett", "");
+            AuthorRequestDTO ken = new AuthorRequestDTO("Ken Follett", "");
             authorService.createAuthor(ken);
 
-            Author kafka = new Author("Franz Kafka", "");
+            AuthorRequestDTO kafka = new AuthorRequestDTO("Franz Kafka", "");
             authorService.createAuthor(kafka);
 
             Book pillarsOfTheEarth = new Book(
